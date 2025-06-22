@@ -20,9 +20,12 @@ op_a_in	IN	32 bits	Operando A (formato de ponto flutuante)
 op_b_in	IN	32 bits	Operando B (formato de ponto flutuante)
 data_out	OUT	32 bits	Resultado da operação
 status_out	OUT	4 bits	Flags de status: [EXACT, OVERFLOW, UNDERFLOW, INEXACT]
+
 Formato dos operandos e saída (op_a_in, op_b_in, data_out):
 | Sinal (1 bit) | Expoente (8 bits) | Mantissa (16 bits) |
+
 3. Funcionamento Interno da FPU
+   
 1. Extração dos campos:
 O operando de 32 bits é decomposto em sinal, expoente e mantissa, com hidden bit implícito.
 
@@ -63,7 +66,9 @@ Teste	Operação	Entrada A (hex)	Entrada B (hex)	Saída Esperada	Descrição
 8	5 + (-8)	00700000	80500000	80600000	Subtração com sinais opostos
 9	(-2) + (-3)	80500000	80600000	80700000	Soma de negativos
 10	(-7) + 4	80900000	00600000	80600000	Subtração cruzada
+
 7. Instruções de Simulação
+   
 1. Abra o ModelSim.
 2. Mude o diretório para a pasta do projeto.
 3. Execute:
@@ -74,7 +79,9 @@ O script irá:
 - Compilar FPU.v e tb_FPU.v.
 - Abrir a simulação tb_FPU.
 - Carregar automaticamente a visualização das ondas (wave.do).
+  
 8. Arquivos no Projeto
+   
 /Projeto_T4/
 ├── FPU.v
 ├── tb_FPU.v
@@ -82,5 +89,6 @@ O script irá:
 ├── wave.do
 ├── README.docx
 
-9. Conclusão
+10. Conclusão
+    
 O projeto implementa uma Unidade de Ponto Flutuante (FPU) capaz de realizar soma e subtração com suporte  a normalização, alinhamento de expoentes e geração de status (EXACT, OVERFLOW, UNDERFLOW, INEXACT). Todo o desenvolvimento foi validado através de 10 casos de teste, cobrindo operações normais, casos de borda e situações de overflow/underflow.
