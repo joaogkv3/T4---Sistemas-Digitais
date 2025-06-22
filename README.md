@@ -2,6 +2,7 @@ Relatório - Trabalho T4 - FPU de Ponto Flutuante
 Disciplina: Sistemas Digitais
 Aluno: João Gabriel Kunz Viana
 Matrícula: 23103883-7
+
 1. Cálculo dos parâmetros X e Y (Baseados na matrícula)
 Matrícula: 23103883-7
 
@@ -12,7 +13,9 @@ Resultado: Expoente com 8 bits
 Para a Mantissa (Y):
 (83 MOD 11) + 10 = (6) + 10 = 16 bits
 Resultado: Mantissa com 16 bits
+
 2. Definição da Interface da FPU
+   
 Sinal	Direção	Largura	Descrição
 clk	IN	1 bit	Clock
 rst	IN	1 bit	Reset síncrono (ativo em nível alto)
@@ -26,22 +29,23 @@ Formato dos operandos e saída (op_a_in, op_b_in, data_out):
 
 3. Funcionamento Interno da FPU
    
-1. Extração dos campos:
+Extração dos campos:
 O operando de 32 bits é decomposto em sinal, expoente e mantissa, com hidden bit implícito.
 
-2. Alinhamento:
+Alinhamento:
 O operando com expoente menor tem sua mantissa deslocada à direita até igualar o expoente maior.
 
-3. Operação:
+Operação:
 Se sinais iguais, soma as mantissas. Se diferentes, subtrai a menor da maior.
 
-4. Normalização:
+Normalização:
 Se soma gera overflow, desloca à direita e incrementa o expoente.
 Se subtração gera número menor, desloca à esquerda e decrementa o expoente.
 
-5. Status gerados:
+Status gerados:
 EXACT, OVERFLOW, UNDERFLOW e INEXACT.
-4. Espectro Numérico Representável
+
+Espectro Numérico Representável
 Expoente: 8 bits, valores de 0 a 255.
 Mantissa: 16 bits, precisão de 1 + 16 bits.
 
@@ -54,7 +58,9 @@ Menor número positivo normalizado:
 Menor número negativo e maior número negativo são iguais em módulo, com sinal invertido.
 
 Baseado na representação semelhante à figura 2-5 do padrão IEEE754.
+
 5. Testbench – Casos de Teste
+   
 Teste	Operação	Entrada A (hex)	Entrada B (hex)	Saída Esperada	Descrição
 1	2 + 3	00500000	00600000	00700000	Soma simples
 2	5 - 2	00700000	00500000	00600000	Subtração
@@ -69,10 +75,9 @@ Teste	Operação	Entrada A (hex)	Entrada B (hex)	Saída Esperada	Descrição
 
 7. Instruções de Simulação
    
-1. Abra o ModelSim.
-2. Mude o diretório para a pasta do projeto.
-3. Execute:
-do sim.do
+Abra o ModelSim.
+Mude o diretório para a pasta do projeto.
+Execute: do sim.do
 
 O script irá:
 - Criar a biblioteca work.
